@@ -7,7 +7,7 @@ variable "region" {
 variable "resource_tags" {
   description = "Tags to set for all resources"
   type        = map(string)
-  default     = {
-    Project     = "ppro-devops-challenge"
+  default = {
+    Project = "ppro-devops-challenge"
   }
 }
