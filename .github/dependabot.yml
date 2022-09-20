@@ -18,6 +18,10 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "terraform"
-    directory: "/infra"
+    directory: "/infra/eks"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform"
+    directory: "/infra/terraform-state"
     schedule:
       interval: "weekly"
