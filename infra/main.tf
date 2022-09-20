@@ -1,12 +1,9 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
+provider "aws" {
+    region = var.region
 }
 
-provider "aws" {
-    region = "eu-central-1"
+data "aws_availability_zones" "available" {}
+
+locals {
+  cluster_name = "ppro-devops-challenge-eks"
 }
