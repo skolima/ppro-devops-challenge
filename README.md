@@ -10,7 +10,7 @@ This folder contains CI/CD configuration for the project:
 
 #### [app](./app/)
 
-This folder contains the code for the application.
+This folder contains the code for the application and notes for the developer.
 
 #### [infra/01. terraform-state](./infra/01.%20terraform-state/)
 
@@ -20,14 +20,13 @@ This folder contains the one-off terraform configuration to create remote state 
 
 This folder contains the terraform configuration to create an EKS cluster.
 
-### Required tools
+### Required tools for working with the infrastructure
 
- - *TODO* document
- - *TODO* document credentials for AWS
- - the application requires different tools, documented separately
+ - [`terraform`](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+ - `AWS CLI` Installing for: [Windows](https://community.chocolatey.org/packages/awscli) [Linux](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) [macOS](https://formulae.brew.sh/formula/awscli)
+ - [setup `AWS CLI` credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) - verify with `aws configure list`
 
 ### Things missing / TODO
-- document tooling requirements and AWS credentials
 - automatic deploy application to AWS 
 - add database to the terraform stuff and use it in the app
 - two environments as terraform workspaces
