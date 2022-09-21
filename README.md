@@ -2,7 +2,7 @@
 
 This repository contains code for the application and its required infrastructure to run on AWS.
 
-#### [.github](./github/)
+#### [.github](./.github/)
 
 This folder contains CI/CD configuration for the project:
  - dependabot automated updates
