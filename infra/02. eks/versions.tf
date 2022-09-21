@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "terraform-running-state"
+    bucket         = "terraform-state-20220921123813616000000001"
     key            = "global/s3/eks.tfstate"
     region         = "eu-central-1"
-    dynamodb_table = "terraform-running-locks"
+    dynamodb_table = "terraform-locks"
     encrypt        = true
   }
 

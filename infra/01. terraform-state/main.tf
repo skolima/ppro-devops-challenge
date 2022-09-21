@@ -6,14 +6,6 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "terraform-running-state"
-    key            = "global/s3/terraform.tfstate"
-    region         = "eu-central-1"
-    dynamodb_table = "terraform-running-locks"
-    encrypt        = true
-  }
-
   required_version = "~> 1.2"
 }
 
@@ -22,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-running-state"
+  bucket_prefix = "terraform-state-"
   tags = {
     Project = "ppro-devops-challenge"
   }
@@ -39,7 +31,7 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-running-locks"
+  name         = "terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
@@ -49,4 +41,9 @@ resource "aws_dynamodb_table" "terraform_locks" {
   tags = {
     Project = "ppro-devops-challenge"
   }
+}
+
+output "terraform_state_bucket_name" {
+  description = "Terraform State Bucket Name"
+  value       = aws_s3_bucket.terraform_state.bucket
 }
