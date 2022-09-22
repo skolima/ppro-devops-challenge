@@ -30,4 +30,4 @@ This folder contains the terraform configuration to create an EKS cluster.
 - automatic deploy application to AWS 
 - add database to the terraform stuff and use it in the app
 - two environments as terraform workspaces
-- writetup steps to get this running from zero
+- write up steps to get this running from zero
