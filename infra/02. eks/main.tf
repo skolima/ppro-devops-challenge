@@ -1,5 +1,12 @@
 provider "aws" {
   region = var.region
+
+  default_tags {
+    tags = {
+      Project   = "ppro-devops-challenge"
+      Environment = terraform.workspace
+    }
+  }
 }
 
 provider "kubernetes" {
@@ -10,5 +17,5 @@ provider "kubernetes" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "ppro-devops-challenge-eks"
+  cluster_name = "ppro-devops-eks-${terraform.workspace}"
 }

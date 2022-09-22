@@ -3,7 +3,6 @@ module "vpc" {
   version = "3.14.4"
 
   name = "ppro-devops-challenge"
-  tags = var.resource_tags
 
   cidr = "10.0.0.0/16"
   azs  = slice(data.aws_availability_zones.available.names, 0, 3)
