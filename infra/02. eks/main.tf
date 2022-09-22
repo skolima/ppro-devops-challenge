@@ -4,7 +4,7 @@ provider "aws" {
   default_tags {
     tags = {
       Project   = "ppro-devops-challenge"
-      Workspace = terraform.workspace
+      Environment = terraform.workspace
     }
   }
 }
@@ -17,5 +17,5 @@ provider "kubernetes" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "ppro-devops-challenge-eks"
+  cluster_name = "ppro-devops-eks-${terraform.workspace}"
 }
