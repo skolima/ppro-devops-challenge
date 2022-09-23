@@ -32,6 +32,14 @@ The infrastructure code is written to support two separate environments, `prod` 
 
 Another possible approach, if full isolation is required, is to use `-backend-config="KEY=VALUE"` option for `terraform init` in order to use different storage options for different environments. When used from the command line this, to me, feels more error prone than Terraform workspaces, but if the configuration is only applied through CI/CD process, then this approach might be preferrable.
 
+### Note on choosing Docker, Kubernetes and EKS
+
+From developer's point of view, there's little practical difference between VMs and containers - if anything, containers are somewhat cheaper and faster. They present a familiar approach to structuring and separating the applications. On the infrastructure side, the relative ease of deployment and instrumenting/extending them with metrics, observability, scaling, etc. is also an advantage. And they're practically language agnostic, meaning the infrastructure needs and preferences can be mostly decoupled from the preferences of the development team (not siloed - just able to be considered separately).
+
+Cloud functions are "more cloud native", perhaps - more of the operations overhead is handled by the platform; and if done right, can be cheaper. They're also significantly more opinionated and restricted - and less familiar to most developers that I've met. They're something worth considering as an option, definitely, but in this case I went with something more universal.
+
+When it comes to how to run those containers, I made a mistake - I went with EKS, as the last time I was deploying to AWS that was what was used for handling Kubernetes. I have now realised I should have used Fargate instead, I don't need the additional control EKS provides - but it's already Friday and I might not have the time to change that decission.
+
 ### Note on security, network segregation and limiting AWS account privileges
 
 This is something I have the least experience with. I would not trust my current skills in that area to be enough for a production environment. This part would definitely require a through review.
