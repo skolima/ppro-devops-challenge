@@ -26,27 +26,29 @@ resource "aws_cloudwatch_log_group" "ppro_devops_service" {
 resource "aws_ecs_task_definition" "ppro_devops_service" {
   family = "ppro-devops-challenge"
 
-  container_definitions = <<EOF
-  [
-    {
-      "name": "ppro-devops-challenge",
-      "image": "ghcr.io/skolima/ppro-devops-challenge:main",
-      "portMappings": [
-        {
-          "containerPort": 80
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-region": "eu-central-1",
-          "awslogs-group": "/ecs/ppro-devops-challenge",
-          "awslogs-stream-prefix": "ecs"
+  container_definitions = jsonencode(
+    [
+      {
+        "name" : "ppro-devops-challenge",
+        "image" : "ghcr.io/skolima/ppro-devops-challenge:main",
+        "portMappings" : [
+          {
+            "containerPort" : 80
+          },
+          {
+            "containerPort" : 443
+          }
+        ],
+        "logConfiguration" : {
+          "logDriver" : "awslogs",
+          "options" : {
+            "awslogs-region" : var.region,
+            "awslogs-group" : aws_cloudwatch_log_group.ppro_devops_service.name,
+            "awslogs-stream-prefix" : "ecs"
+          }
         }
       }
-    }
-  ]
-  EOF
+  ])
 
   execution_role_arn = aws_iam_role.ppro_challenge_task_execution_role.arn
   depends_on = [
