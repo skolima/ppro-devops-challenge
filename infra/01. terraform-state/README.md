@@ -4,9 +4,9 @@ This is a one-off thing. Also, it itself can't use remote-backed storage for sta
 
 Running (assuming your AWS credentials are configured):
 ```
-    terraform init
-    terraform plan
-    terraform apply
+terraform init
+terraform plan
+terraform apply
 ```
 
 This will output an S3 bucket name, which needs to be entered into `terraform -> backend "s3" -> bucket` field of other configurations.
