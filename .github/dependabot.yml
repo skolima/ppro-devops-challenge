@@ -25,3 +25,7 @@ updates:
     directory: "/infra/02. eks"
     schedule:
       interval: "weekly"  
+  - package-ecosystem: "terraform"
+    directory: "/infra/03. fargate"
+    schedule:
+      interval: "weekly"  
