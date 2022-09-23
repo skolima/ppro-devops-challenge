@@ -30,6 +30,8 @@ This folder contains the Terraform configuration to create an EKS cluster.
 
 The infrastructure code is written to support two separate environments, `prod` and `dev`. In this challenge, I've separated them only by name (and using tags). In a practical usage scenario (for billing, security, usage limits, segregation, etc) those would be using not only separate Terraform workspaces, but also separate AWS accounts. This can be done e.g. by varying the `profile` field in the `provider "aws"` block based on the workspace selected. Please note that the Terraform remote backend should use the same `profile` (in a larger organisation - probably a dedicated one) across all workspaces. [More reading on using different AWS profiles with different Terraform workspaces.](https://alessandromarinoac.com/posts/iac/terraform/terraform-workspaces-multiple-accounts/)
 
+Another possible approach, if full isolation is required, is to use `-backend-config="KEY=VALUE"` option for `terraform init` in order to use different storage options for different environments. When used from the command line this, to me, feels more error prone than Terraform workspaces, but if the configuration is only applied through CI/CD process, then this approach might be preferrable.
+
 ### Note on security, network segregation and limiting AWS account privileges
 
 This is something I have the least experience with. I would not trust my current skills in that area to be enough for a production environment. This part would definitely require a through review.
