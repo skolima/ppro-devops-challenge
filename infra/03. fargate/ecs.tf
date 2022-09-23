@@ -17,6 +17,15 @@ resource "aws_ecs_service" "ppro_devops_service" {
       aws_subnet.private_e.id,
     ]
   }
+
+  load_balancer {
+   target_group_arn = aws_lb_target_group.ppro_devops_service.arn
+   container_name   = "ppro-devops-challenge"
+   container_port   = "80"
+ }
+
+ desired_count = 1
+ health_check_grace_period_seconds = 10
 }
 
 resource "aws_cloudwatch_log_group" "ppro_devops_service" {
@@ -34,9 +43,6 @@ resource "aws_ecs_task_definition" "ppro_devops_service" {
         "portMappings" : [
           {
             "containerPort" : 80
-          },
-          {
-            "containerPort" : 443
           }
         ],
         "logConfiguration" : {
@@ -58,9 +64,8 @@ resource "aws_ecs_task_definition" "ppro_devops_service" {
   # These are the minimum values for Fargate containers.
   cpu                      = 256
   memory                   = 512
-  requires_compatibilities = ["FARGATE"]
 
-  # This is required for Fargate containers (more on this later).
+  requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
 }
 

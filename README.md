@@ -38,7 +38,7 @@ From developer's point of view, there's little practical difference between VMs 
 
 Cloud functions are "more cloud native", perhaps - more of the operations overhead is handled by the platform; and if done right, can be cheaper. They're also significantly more opinionated and restricted - and less familiar to most developers that I've met. They're something worth considering as an option, definitely, but in this case I went with something more universal.
 
-When it comes to how to run those containers, I made a mistake - I went with EKS, as the last time I was deploying to AWS that was what was used for handling Kubernetes. I have now realised I should have used Fargate instead, I don't need the additional control EKS provides - but it's already Friday and I might not have the time to change that decission.
+When it comes to how to run those containers, I made a mistake - I went with EKS, as the last time I was deploying to AWS that was what was used for handling Kubernetes. I have now realised I should have used Fargate instead, I don't need the additional control EKS provides - but it's already Friday and I might not have the time to change that decision.
 
 ### Note on security, network segregation and limiting AWS account privileges
 
