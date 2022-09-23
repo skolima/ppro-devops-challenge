@@ -12,7 +12,7 @@ dotnet run
 Running with `docker`:
 ```
 docker build --pull -t ppro-challenge-app .
-docker run --rm ppro-challenge-app
+docker run --rm -p 80:80 ppro-challenge-app
 ```
 
 The most significant part missing are tests. Also things such as editorconfig, style settings, linter, etc. For a real-world code those should be setup and run at least on every pull request - preferrably also in-editor for faster developer feedback.
